@@ -8,7 +8,7 @@ export default function Posts() {
   const classes = useStyles();
   return (
     <>
-      <h1>Postddvdvdfvddds</h1>
+      <h1>Postddvdvddedefvddds</h1>
       <Post />
       <Post />
     </>
