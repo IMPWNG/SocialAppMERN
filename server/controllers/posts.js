@@ -14,12 +14,12 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
     const post = req.body;
-    const postMessage = new PostMessage(post);
+    const newPostMessage = new PostMessage(post);
 
     try {
-        await newPost.save();
+        await newPostMessage.save(); // Typo there I forgot to add newPostMessage. Before it was juste postMessage.save()
 
-        res.status(201).json(postMessage);
+        res.status(201).json(newPostMessage);
    
     } catch (err) {
         res.status(409).json({ message: err.message });
