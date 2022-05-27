@@ -13,7 +13,7 @@ export default function Posts({ setCurrentId }) {
   console.log(posts);
   
   return (
-    (!posts.length) ? (
+    (!posts?.length) ? (
       <CircularProgress />
   ) : (
     <Grid className={classes.containter} container alignItems="stretch" spacing={3}>

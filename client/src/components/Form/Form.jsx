@@ -33,12 +33,23 @@ export default function Form({ currentId, setCurrentId }) {
 
     if(currentId) {
       dispatch(updatePost(currentId, postData));
+
     } else {
       dispatch(createPost(postData));
     }
+    clear(); 
     
   };
-  const clear = (e) => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+    creator: "",
+    title: "",
+    message: "",
+    tags: "",
+    selectedFile: ""
+    })
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -48,7 +59,7 @@ export default function Form({ currentId, setCurrentId }) {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6"></Typography>
+        <Typography variant="h6">{currentId ? "Editing" : "Creating"}</Typography>
         <TextField
           name="creator"
           variant="outlined"

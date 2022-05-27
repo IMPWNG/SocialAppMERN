@@ -21,7 +21,6 @@ export default function Post({ post, setCurrentId }) {
       <CardMedia
         classeName={classes.media}
         image={post.selectedFile}
-        title={post.title}
         component="img" // To show image in the card we need to add component props MUI
       />
       <div className={classes.overlay}>
@@ -46,27 +45,30 @@ export default function Post({ post, setCurrentId }) {
         <Typography variant="body2" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
-        <CardContent>
-          <Typography classeName={classes.title} variant="h5" gutterBottom>
-            {post.message}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => setCurrentId(post._id)}
-          >
-            <ThumbUpAltIcon fontSize="small" />
-            Like
-            {post.likeCount}
-          </Button>
-          <Button size="small" color="primary" onClick={() => {}}>
-            <DeleteIcon fontSize="small" />
-            Delete
-          </Button>
-        </CardActions>
       </div>
+      <Typography classeName={classes.title} variant="h5" gutterBottom>
+        {post.title}
+      </Typography>
+      <CardContent>
+        <Typography variant="h5" gutterBottom>
+          {post.message}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.cardActions}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => setCurrentId(post._id)}
+        >
+          <ThumbUpAltIcon fontSize="small" />
+          Like
+          {post.likeCount}
+        </Button>
+        <Button size="small" color="primary" onClick={() => {}}>
+          <DeleteIcon fontSize="small" />
+          Delete
+        </Button>
+      </CardActions>
     </Card>
   );
 }
