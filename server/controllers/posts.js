@@ -28,12 +28,24 @@ export const createPost = async (req, res) => {
 }
 
 export const updatePost = async (req, res) => {
-    const { id: _id } = req.params;
+    const { id } = req.params;
+    const { title, message, creator, selectedFile, tags } = req.body;
 
-    if(!mongoose.Types.ObjectId.isValid(_id)) {
-        return res.status(400).send({ message: "Invalid ID" });
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({ message: (`${id}is an invalid ID`)});
     } else {
-        const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+        const updatedPost = {
+          creator,
+          title,
+          message,
+          tags,
+          selectedFile,
+          _id: id,
+        };
         res.json(updatedPost);
-    }
+
+        await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+        res.json(updatedPost);
+    };
+        
 }

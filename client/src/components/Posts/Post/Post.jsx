@@ -27,11 +27,18 @@ export default function Post({ post, setCurrentId }) {
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
-          {moment(post.CreatedAt).fromNow}
+          {moment(post.CreatedAt).fromNow()}
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+        <Button
+          style={{ color: "white" }}
+          size="small"
+          onClick={(e) => {
+            e.stopPropagation();
+            setCurrentId(post._id);
+          }}
+        >
           <MoreHorizIcon fontSize="medium" />
         </Button>
       </div>
@@ -45,7 +52,11 @@ export default function Post({ post, setCurrentId }) {
           </Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <Button size="small" color="primary" onClick={() => setCurrentId(post._id)}>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => setCurrentId(post._id)}
+          >
             <ThumbUpAltIcon fontSize="small" />
             Like
             {post.likeCount}
