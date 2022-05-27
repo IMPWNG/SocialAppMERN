@@ -22,7 +22,7 @@ export default function Post({ post }) {
         classeName={classes.media}
         image={post.selectedFile}
         title={post.title}
-        component="img"
+        component="img" // To show image in the card we need to add component props MUI
       />
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
