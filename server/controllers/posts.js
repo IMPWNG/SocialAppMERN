@@ -32,7 +32,7 @@ export const updatePost = async (req, res) => {
     const { title, message, creator, selectedFile, tags } = req.body;
 
     if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).send({ message: (`${id}is an invalid ID`)});
+        return res.status(400).send({ message: (`${id} is an invalid ID`)});
     } else {
         const updatedPost = {
           creator,
@@ -45,5 +45,15 @@ export const updatePost = async (req, res) => {
         await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
         res.json(updatedPost);
     };
-        
+}
+
+export const deletePost = async (req, res) => {
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({ message: (`${id}is an invalid ID`)});
+    } else {
+        await PostMessage.findByIdAndDelete(id);
+        res.json({ message: `${id} has been deleted` });
+    };
 }
