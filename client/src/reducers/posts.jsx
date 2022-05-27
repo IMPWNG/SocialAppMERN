@@ -9,6 +9,17 @@ export default (posts = [], action) => {
                 [action.payload.id]: action.payload,
             }
         
+        case 'UPDATE':
+            return {
+                ...posts.map((post) => {
+                    if (post.id === action.payload._id) {
+                        return action.payload;
+                    } 
+                    return post;
+                }),
+            }
+
+        
         default:
             return posts;	
 

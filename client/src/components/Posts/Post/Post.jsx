@@ -14,7 +14,7 @@ import moment from "moment";
 
 import useStyles from "./styles";
 
-export default function Post({ post }) {
+export default function Post({ post, setCurrentId }) {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -45,7 +45,7 @@ export default function Post({ post }) {
           </Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <Button size="small" color="primary" onClick={() => {}}>
+          <Button size="small" color="primary" onClick={() => setCurrentId(post._id)}>
             <ThumbUpAltIcon fontSize="small" />
             Like
             {post.likeCount}
