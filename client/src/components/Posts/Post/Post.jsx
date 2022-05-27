@@ -13,15 +13,13 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../actions/posts";
+import { deletePost, likePost } from "../../../actions/posts";
 
 import useStyles from "./styles";
 
 export default function Post({ post, setCurrentId }) {
   const classes = useStyles();  
   const dispatch = useDispatch();
-
-
 
   return (
     <Card className={classes.card}>
@@ -65,7 +63,7 @@ export default function Post({ post, setCurrentId }) {
         <Button
           size="small"
           color="primary"
-          onClick={() => setCurrentId(post._id)}
+          onClick={() => dispatch(likePost(post._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
           Like
